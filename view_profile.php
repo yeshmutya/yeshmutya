@@ -1,0 +1,195 @@
+<?php include('connect.php');
+session_start();
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="icon" href="images/favicon.ico">
+	<title>Our Company</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="bootstrap-4.1.3/css/bootstrap.min.css" type="text/css" media="all" />
+  <!-- Bootstrap CSS File -->
+
+    <!-- Libraries CSS Files -->
+  <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/animate/animate.min.css" rel="stylesheet">
+  <link href="css/ionicons/css/ionicons.min.css" rel="stylesheet">
+  <link href="js/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="css/magnific-popup.css" rel="stylesheet">
+  <link href="css/ionicons/css/ionicons.min.css" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="css/pannel.css" rel="stylesheet">
+
+</head>
+<body>
+	<div class="container-fluid" id="wrapper">
+		<div class="row">
+			<nav class="sidebar col-xs-12 col-sm-4 col-lg-3 col-xl-2">
+				<h1 class="site-title"><a href="index.php"><em class="fa fa-rocket"></em> Brand.name</a></h1>
+
+				<a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><em class="fa fa-bars"></em></a>
+				<ul class="nav nav-pills flex-column sidebar-nav">
+					<li class="nav-item"><a class="nav-link active" href="index.php"><em class="fa fa-dashboard"></em> Back to Website <span class="sr-only">(current)</span></a></li>
+					<li class="nav-item"><a class="nav-link" href="forms.php"><em class="fa fa-pencil-square-o"></em> Forms <span class="sr-only">(current)</span></a></li>
+						<li class="nav-item"><a class="nav-link" href="added_forms.php"><em class="fa fa-pencil-square-o"></em> Added Forms <span class="sr-only">(current)</span></a></li>
+	<li class="nav-item"><a class="nav-link" href="updated_forms.php"><em class="fa fa-pencil-square-o"></em> Updated Forms <span class="sr-only">(current)</span></a></li>
+				</ul>
+
+				<a href="#" class="logout-button"><em class="fa fa-power-off"></em> Signout</a></nav>
+			<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto">
+				<header class="page-header row justify-center">
+					<div class="col-md-6 col-lg-8" >
+						<h1 class="float-left text-center text-md-left">Form Elements</h1>
+					</div>
+					<div class="dropdown user-dropdown col-md-6 col-lg-4 text-center text-md-right"><a class="btn btn-stripped dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<img src="img/profile-pic.jpg" alt="profile photo" class="circle float-left profile-photo" width="50" height="auto">
+						<div class="username mt-1">
+							<h4 class="mb-1">Username</h4>
+							<h6 class="text-muted">Super Admin</h6>
+						</div>
+						</a>
+						<div class="dropdown-menu dropdown-menu-right" style="margin-right: 1.5rem;" aria-labelledby="dropdownMenuLink"><a class="dropdown-item" href="sign-in.php"><em class="fa fa-user-circle mr-1"></em> View Profile</a>
+							 <!-- <a class="dropdown-item" href="#"><em class="fa fa-sliders mr-1"></em> Preferences</a> -->
+							 <a class="dropdown-item" href="sign-in.php"><em class="fa fa-power-off mr-1"></em> Logout</a></div>
+					</div>
+					<div class="clear"></div>
+				</header>
+				<section class="row">
+					<div class="col-sm-12">
+						<section class="row">
+							<div class="col-12">
+								<div class="card mb-4">
+									<div class="card-block">
+										<h3 class="card-title">Inputs</h3>
+                    <?php
+                    //print_r($_GET);die;
+                    $id=$_GET['id'];
+                   $con=mysqli_connect('localhost','t_pro','tpro@123','t_pro');
+                   $query="select * from forms where  id='$id'";
+                   $result=mysqli_query($con,$query);
+                   $check=mysqli_fetch_array($result);
+                  
+                   ?>
+                   <form class="form" action="" method="post">
+											<div class="form-group row">
+												<label class="col-md-3 col-form-label">Name</label>
+												<div class="col-md-9">
+													<input type="text" name="name" value="<?php echo $check['name'];?>" class="form-control" readonly="">
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="col-md-3 col-form-label">Last Name</label>
+												<div class="col-md-9">
+													<input class="form-control" value="<?php echo $check['l_name'];?>"type="text" name="l_name" readonly="">
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="col-md-3 col-form-label">Email</label>
+												<div class="col-md-9">
+													<input class="form-control" value="<?php echo $check['email'];?>" type="email" name="email" readonly="" >
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="col-md-3 col-form-label">Mobile No.</label>
+												<div class="col-md-9">
+													<input type="number" value="<?php echo $check['mobile'];?>" name="mobile_no" class="form-control" readonly="">
+												</div>
+											</div>
+												<div class="form-group row">
+												<label class="col-md-3 col-form-label">Date Of Birth</label>
+												<div class="col-md-9">
+													<input type="date" name="bday" value="<?php echo $check['dob'];?>"  class="form-control" readonly="" >
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="col-md-3 col-form-label">Enter Your ID</label>
+												<div class="col-md-9">
+													<input type="text" name="ID" value="<?php echo $check['user_id'];?>"  class="form-control" readonly="" >
+												</div>
+											</div>
+
+											<div class="form-group row">
+												<label class="col-md-3 col-form-label">Address</label>
+												<div class="col-md-5">
+													<input type="address" value="<?php echo $check['address'];?>" name="address"  class="form-control" readonly="" >
+												</div>
+												<div class="col-md-4">
+													<input type="text" name="pin_code" value="<?php echo $check['pincode'];?>" class="form-control" >
+												</div>
+											</div>
+
+											<div class="form-group row">
+												<label class="col-md-3 col-form-label">Select Option</label>
+												<div class="col-md-9">
+													<select value="<?php echo $check['sel_op'];?>" name="sel_op" class="custom-select form-control" readonly="">
+														<option selected>Open this select menu</option>
+														<option value="1">One</option>
+														<option value="2">Two</option>
+														<option value="3">Three</option>
+													</select>
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="col-md-3 col-form-label">Upload Report</label>
+												<div class="col-md-9">
+													  Select a file: <input type="file" name="myFile"><br><br>
+												</div>
+											</div>
+
+
+											<button href="forms.php"  type="submit">Back</button>
+										</form>
+									
+										
+									</div>
+								</div>
+							</div>
+						</section>
+
+
+
+						<section class="row">
+							<div class="col-12 mt-1 mb-4"><a href=""></a></div>
+						</section>
+					</div>
+				</section>
+			</main>
+		</div>
+	</div>
+
+	<!-- Bootstrap core JavaScript
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.min.js"></script>
+  	<script src="js/popper.min.js"></script>
+    <script src="bootstrap-4.1.3/js/bootstrap.min.js"></script>
+
+    <script src="js/pannel/chart.min.js"></script>
+    <script src="js/pannel/chart-data.js"></script>
+    <script src="js/pannel/easypiechart.js"></script>
+    <script src="js/pannel/easypiechart-data.js"></script>
+    <script src="js/pannel/bootstrap-datepicker.js"></script>
+    <script src="js/pannel/custom.js"></script>
+    <script>
+	    var startCharts = function () {
+	                var chart1 = document.getElementById("line-chart").getContext("2d");
+	                window.myLine = new Chart(chart1).Line(lineChartData, {
+	                responsive: true,
+	                scaleLineColor: "rgba(0,0,0,.2)",
+	                scaleGridLineColor: "rgba(0,0,0,.05)",
+	                scaleFontColor: "#c5c7cc "
+	                });
+	            };
+	        window.setTimeout(startCharts(), 1000);
+	</script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+
+	</body>
+</html>
